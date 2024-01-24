@@ -9,17 +9,20 @@ const config: Config = {
   ],
   theme: {
     colors: {
-      "yellow": "#F6B928",
-      "brown": "#251605",
-      "green": "#1B998B",
-      "green-dark": "#198C7F",
-      "green-darker": "#11635A",
-      "red": "#D64045",
-      "red-dark": "#CA2E33",
-      "red-darker": "#B93B3F",
+      'grey': '#F8F7FF',
+      'yellow': '#F6B928',
+      'brown': '#251605',
+      'green': '#1B998B',
+      'green-dark': '#198C7F',
+      'green-darker': '#11635A',
+      'red': '#D64045',
+      'red-dark': '#CA2E33',
+      'red-darker': '#B93B3F',
     },
-    fontFamily: {
-
+    fontSize: {
+      'base': '1.125rem', // 18 px
+      'lg': '1.5rem',     // 24 px
+      'xl': '2.625rem',   // 42 px
     },
     extend: {
       
