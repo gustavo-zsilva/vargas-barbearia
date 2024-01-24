@@ -17,7 +17,7 @@ export default function Home() {
           <Outdoor />
           <Menu />
         </div>
-
+        
         <div className="flex flex-1">
           Content side 2
         </div>
