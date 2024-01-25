@@ -14,7 +14,6 @@ export async function Menu() {
     const file = await fs.readFile(process.cwd() + '/menuItems.json', 'utf-8')
     const menuItems: MenuItem[] = JSON.parse(file)
     
-
     return (
         <div>
             <div className="flex items-center mb-6 gap-2">
@@ -24,7 +23,7 @@ export async function Menu() {
                 </h3>
                 <hr className="flex border-1 flex-1 rounded-full"/>
             </div>
-            <ul className="border-l-2">
+            <ul className="border-x-2 border-grey-dark">
                 {menuItems.map(item => (
                     <li key={item.name} className="flex justify-between items-center border-b-2 border-grey-dark mx-6 py-5">
                         <p>{item.name}</p>

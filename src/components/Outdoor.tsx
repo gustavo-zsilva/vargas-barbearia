@@ -1,3 +1,5 @@
+import { FaExternalLinkAlt } from "react-icons/fa";
+
 export function Outdoor() {
     return (
         <div className="w-full text-grey shadow-sm">
@@ -6,8 +8,9 @@ export function Outdoor() {
                 <span>até 20:00</span>
             </div>
             <button className="bg-green-dark w-full rounded-b-lg py-2.5 border-t-2 border-green-darker">
-                <a href="">
+                <a href="#" className="flex items-center justify-center gap-3">
                     Agendar horário
+                    <FaExternalLinkAlt size={16} />
                 </a>
             </button>
         </div>
