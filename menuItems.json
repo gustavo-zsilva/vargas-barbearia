@@ -1,0 +1,38 @@
+[
+    {
+        "name": "Aparo de barba",
+        "price": 20,
+        "isStarred": true,
+        "isPriceRanged": true
+    },
+    {
+        "name": "Barba com toalha quente",
+        "price": 45,
+        "isStarred": true,
+        "isPriceRanged": false
+    },
+    {
+        "name": "Barba com navalha",
+        "price": 35,
+        "isStarred": false,
+        "isPriceRanged": true
+    },
+    {
+        "name": "Corte com tesoura",
+        "price": 55,
+        "isStarred": false,
+        "isPriceRanged": true
+    },
+    {
+        "name": "Degradê",
+        "price": 60,
+        "isStarred": false,
+        "isPriceRanged": false
+    },
+    {
+        "name": "Corte militar",
+        "price": 35,
+        "isStarred": false,
+        "isPriceRanged": false
+    }
+]
