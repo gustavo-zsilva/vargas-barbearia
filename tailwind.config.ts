@@ -13,6 +13,7 @@ const config: Config = {
         'grey': '#F8F7FF',
         'grey-dark': '#9C9C9C',
         'yellow': '#F6B928',
+        'yellow-light': '#FFC949',
         'brown': '#251605',
         'green': '#1B998B',
         'green-dark': '#198C7F',

@@ -3,6 +3,7 @@ import { Location } from "../components/Location";
 import { Outdoor } from "../components/Outdoor";
 import { Menu } from "../components/Menu";
 import { Gallery } from "../components/Gallery";
+import { Testimonials } from "../components/Testimonials";
 
 export default function Home() {
   return (
@@ -22,6 +23,8 @@ export default function Home() {
           <Gallery />
         </div>
       </div>
+
+      <Testimonials />
     </main>
   );
 }

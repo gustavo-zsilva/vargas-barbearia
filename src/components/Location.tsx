@@ -7,7 +7,7 @@ export function Location() {
                 <FaLocationDot size={22} />
                 Córrego Grande
             </span>
-            <span className="underline">
+            <span className="underline underline-offset-2">
                 <a href="#">
                     Ver rotas
                 </a>
