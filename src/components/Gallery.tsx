@@ -30,7 +30,7 @@ export async function Gallery() {
                     before:to-transparent
                 ">
                     {imageLinks.map(link => (
-                        <picture className="inline-block mb-6 rounded-sm overflow-hidden">
+                        <picture key={link} className="inline-block mb-6 rounded-sm overflow-hidden">
                             <Image
                                 src={link}
                                 alt="Img"
