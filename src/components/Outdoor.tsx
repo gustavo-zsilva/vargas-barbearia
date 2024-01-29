@@ -1,5 +1,5 @@
 import { FaExternalLinkAlt } from "react-icons/fa";
-import { GoogleMapsEmbed } from '@next/third-parties/google'
+import { fetchWrapper } from "../utils/fetch";
 
 type Period = {
     close: {
@@ -20,48 +20,69 @@ type OpeningHours = {
     weekday_text: string,
 }
 
-type Result = {
+type PlaceData = {
     current_opening_hours: OpeningHours,
 }
 
-async function getData() {
-    const apiKey = process.env.GOOGLE_API_KEY
+async function getPlaceData() {
 
-    const placesData = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=Vargas+Barbeiro,576&&key=${apiKey}`)
-    if (!placesData.ok) {
-        throw new Error('Failed to fetch data')
-    }
+    const { results: allPlacesData } = await fetchWrapper(`/geocode`, {
+        address: 'Vargas+Barbeiro,576',
+    })
 
-    const { results } = await placesData.json()
-    const placeId = results[0].place_id
+    const placeId = allPlacesData[0].place_id
 
-    const placeData = await fetch(`
-        https://maps.googleapis.com/maps/api/place/details/json?fields=current_opening_hours&place_id=${placeId}&key=${apiKey}
-    `, {
+    const { result: placeData }: { result: PlaceData } = await fetchWrapper(`/place/details`, {
+        place_id: placeId,
+        fields: ['current_opening_hours'],
+    },
+    {
         next: {
             revalidate: 1200 // 20 Min
         },
-        headers: {
-            'Accept-Language': 'pt-BR',
-            // 'Authorization': apiKey?.toString()
-        }
     })
 
-    if (!placeData.ok) {
-        throw new Error('Failed to fetch place data')
+    return { placeData }
+}
+
+function formatDateStrings({ close, open }: Period) {
+    const closeTime = close.time.slice(0, 2) + ':' + close.time.slice(2)
+    const openTime = open.time.slice(0, 2) + ':' + open.time.slice(2)
+
+    return {
+        close: { ...close, time: closeTime },
+        open: { ...open, time: openTime },
     }
-
-    const { result }: { result: Result } = await placeData.json()
-
-    return { result }
 }
 
 export async function Outdoor() {
 
-    const { result } = await getData()
+    const { placeData } = await getPlaceData()
 
-    const isOpenNow = result.current_opening_hours.open_now
-    const workingPeriods = result.current_opening_hours.periods
+    const isOpenNow = placeData.current_opening_hours.open_now
+    const workingPeriods = placeData.current_opening_hours.periods
+
+    const date = new Date()
+    const currentDay = date.getDay()
+    const workingDay = formatDateStrings(workingPeriods[currentDay - 1])
+    
+    function getNextWorkingDay() {
+        const workingPeriodsLastIndex = workingPeriods.length - 1
+    
+        if (workingDay.close.day === workingPeriodsLastIndex) {
+            return formatDateStrings(workingPeriods[0])
+        }
+        // Current Day is actually the next day, because the array days count starts on 1, not 0
+        return formatDateStrings(workingPeriods[currentDay])
+    }
+
+    const nextWorkingDay = getNextWorkingDay()
+    // Transforms date ("2024/01/30") to weekday ("Tuesday")
+    const formattedDate = new Date(nextWorkingDay.open.date
+        .replaceAll('-', '/'))
+        .toLocaleString('default', {
+            weekday: 'long'
+        })
 
     const styles = {
         bg: isOpenNow ? 'bg-green' : 'bg-red',
@@ -69,25 +90,16 @@ export async function Outdoor() {
         border: isOpenNow ? 'border-green-darker' : 'border-red-darker',
     }
 
-    const date = new Date()
-    const currentDay = date.getDay()
-
-    const workingDay = workingPeriods.filter(({ close, open }) => {
-        if (close.day === currentDay) {
-            
-            // Formatting strings
-            close.time = close.time.slice(0, 2) + ':' + close.time.slice(2)
-            open.time = open.time.slice(0, 2) + ':' + open.time.slice(2)
-
-            return { close, open }
-        }
-    })[0]
-
     return (
         <div className="w-full text-grey shadow-sm">
             <div className={`flex flex-col ${styles.bg} items-center py-3`}>
                 <span className="font-bold">{isOpenNow ? 'ABERTO AGORA' : 'FECHADO'}</span>
-                <span>até {workingDay.close.time}</span>
+                <span>
+                    {isOpenNow ?
+                        `até ${workingDay.close.time}`
+                        : `abre ${currentDay === 5 ? formattedDate : 'amanhã'} ás ${nextWorkingDay.open.time}`
+                    }
+                </span>
             </div>
             <button className={`${styles.bgDark} w-full rounded-b-lg border-t-2 ${styles.border} hover:brightness-95`}>
                 <a href="#" className="flex py-2.5 items-center justify-center gap-3">
