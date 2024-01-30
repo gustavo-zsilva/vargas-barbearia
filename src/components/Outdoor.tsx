@@ -24,15 +24,19 @@ type PlaceData = {
     current_opening_hours: OpeningHours,
 }
 
+type AllPlacesData = {
+    place_id: string,
+}
+
 async function getPlaceData() {
 
-    const { results: allPlacesData } = await fetchWrapper(`/geocode`, {
+    const { results: allPlacesData } = await fetchWrapper<{ results: AllPlacesData[] }>(`/geocode`, {
         address: 'Vargas+Barbeiro,576',
     })
 
     const placeId = allPlacesData[0].place_id
 
-    const { result: placeData }: { result: PlaceData } = await fetchWrapper(`/place/details`, {
+    const { result: placeData } = await fetchWrapper<{ result: PlaceData }>(`/place/details`, {
         place_id: placeId,
         fields: ['current_opening_hours'],
     },
@@ -107,7 +111,6 @@ export async function Outdoor() {
                     <FaExternalLinkAlt size={16} />
                 </a>
             </button>
-            
         </div>
     )
 }

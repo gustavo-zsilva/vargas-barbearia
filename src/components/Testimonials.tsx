@@ -1,6 +1,10 @@
+import { fetchWrapper } from "../utils/fetch";
 import { UserComment } from "./UserComment";
 
-export function Testimonials() {
+export async function Testimonials() {
+
+    const testimonialData = await fetchWrapper('/place/details')
+
     return (
         <section className="flex bg-yellow px-44 py-16 items-center justify-center flex-col">
             <h1 className="text-lg relative before:content-[''] before:absolute before:left-1/10 before:h-0.5 before:w-10/12 before:bg-brown">

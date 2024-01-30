@@ -1,11 +1,7 @@
 const apiKey = process.env.GOOGLE_API_KEY
 
 export async function fetchWrapper<T = unknown>(input: RequestInfo | URL, params?: any | undefined, init?: RequestInit | undefined) {
-
-    console.log('URL: ' + input)
-    console.log('PARAMS: ' + `${params?.address} ${params?.fields} ${params?.place_id}`)
-    console.log('OPTIONS: ' + init)
-
+    
     const urlParams = new URLSearchParams({
         ...params,
     })
@@ -24,5 +20,5 @@ export async function fetchWrapper<T = unknown>(input: RequestInfo | URL, params
         throw new Error('Failed to fetch data')
     }
 
-    return data
+    return data as T
 }

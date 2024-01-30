@@ -3,7 +3,7 @@ import { BiSolidQuoteLeft } from "react-icons/bi"
 
 export function UserComment() {
     return (
-        <div className="flex flex-col bg-yellow-light p-7 gap-6">
+        <div className="flex flex-col bg-yellow-light p-7 gap-6 rounded-2xl">
             <header className="flex justify-between items-center gap-8">
                 <div className="flex">
                     <MdOutlineStar size={26} color="#FFF" />
@@ -18,7 +18,7 @@ export function UserComment() {
             </header>
             <main className="flex">
                 <BiSolidQuoteLeft size={26} color="#FFF" className="min-w-fit" />
-                <p className="ml-2">
+                <p className="ml-2 leading-6">
                     Sou cliente fiel desta barbearia há um tempo e posso dizer que adoro o trabalho do Vargas. O atendimento sempre é excelente. Sem dúvidas, recomendo.
                 </p>
             </main>
