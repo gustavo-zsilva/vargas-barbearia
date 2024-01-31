@@ -4,10 +4,11 @@ import { Outdoor } from "../components/Outdoor";
 import { Menu } from "../components/Menu";
 import { Gallery } from "../components/Gallery";
 import { Testimonials } from "../components/Testimonials";
+import { Contact } from "../components/Contact";
 
 export default function Home() {
   return (
-    <main className="bg-grey h-full">
+    <main className="bg-grey text-brown h-full">
       <Header />
       <div className="flex mx-44 py-16 text-base gap-16">
         <div className="flex flex-col w-5/12 gap-10">
@@ -25,6 +26,7 @@ export default function Home() {
       </div>
 
       <Testimonials />
+      <Contact />
     </main>
   );
 }
