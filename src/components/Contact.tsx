@@ -16,19 +16,9 @@ type ContactData = {
 export async function Contact() {
     const apiKey = process.env.GOOGLE_API_KEY || ""
 
-    const { results: allPlacesData } = await fetchWrapper<{ results: AllPlacesData[] }>(`/geocode`, {
-        address: 'Vargas+Barbeiro,576',
-    })
-
-    const placeId = allPlacesData[0].place_id
-
     const { result } = await fetchWrapper<{ result: ContactData }>(`/place/details`, {
-        place_id: placeId,
         fields: ['formatted_phone_number', 'formatted_address', 'current_opening_hours/weekday_text']
     })
-
-    console.log(result.current_opening_hours.weekday_text[0].search(':'));
-    
 
     return (
         <section className="flex flex-col justify-center items-center mx-44 py-16">
@@ -78,7 +68,7 @@ export async function Contact() {
                             const schedule = weekday.split(' ')[1]
                             
                             return (
-                                <p className="flex">
+                                <p key={weekday} className="flex">
                                     <span className="w-14">{`${shortWeekday}.:`}</span>
                                     <span>{schedule}</span>
                                 </p>

@@ -18,15 +18,8 @@ type TestimonialsData = {
 }
 
 export async function Testimonials() {
-
-    const { results: allPlacesData } = await fetchWrapper<{ results: AllPlacesData[] }>(`/geocode`, {
-        address: 'Vargas+Barbeiro,576',
-    })
-
-    const placeId = allPlacesData[0].place_id
-
+    
     const { result: testimonialData } = await fetchWrapper<{ result: TestimonialsData }>('/place/details', {
-        place_id: placeId,
         fields: ['reviews'],
     })
 

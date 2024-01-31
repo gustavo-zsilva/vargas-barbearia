@@ -30,20 +30,12 @@ type AllPlacesData = {
 
 async function getPlaceData() {
 
-    const { results: allPlacesData } = await fetchWrapper<{ results: AllPlacesData[] }>(`/geocode`, {
-        address: 'Vargas+Barbeiro,576',
-    })
-
-    const placeId = allPlacesData[0].place_id
-
     const { result: placeData } = await fetchWrapper<{ result: PlaceData }>(`/place/details`, {
-        place_id: placeId,
-        fields: ['current_opening_hours'],
-    },
-    {
+        fields: ['current_opening_hours/open_now', 'current_opening_hours/periods'],
+    }, {
         next: {
             revalidate: 1200 // 20 Min
-        },
+        }
     })
 
     return { placeData }
