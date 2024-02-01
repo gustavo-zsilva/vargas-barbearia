@@ -21,19 +21,22 @@ export async function Contact() {
     })
 
     return (
-        <section className="flex flex-col justify-center items-center mx-44 py-16">
+        <section
+            id="contact"
+            className="flex flex-col justify-center items-center mx-desktop py-16 min-h-[80vh]"
+        >
             <h1 className="
                 text-lg
                 relative
                 mb-16
                 before:content-['']
                 before:absolute
-                before:left-0
+                before:left-[50%]
                 before:h-0.5
                 before:w-[80px]
+                before:ml-[-40px]
                 before:top-[-30%]
                 before:bg-brown
-                before:translate-x-[50%]
             ">
                 ENTRE EM CONTATO
             </h1>
