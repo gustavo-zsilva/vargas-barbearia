@@ -32,6 +32,14 @@ const config: Config = {
       height: {
         '2-screen': '150vh',
       },
+
+      boxShadow: {
+        'md-upper': '0 -2px 4px -2px rgb(0 0 0 / 0.1)',
+      },
+
+      spacing: {
+        'desktop': '11rem',
+      }
     },
   },
   plugins: [],
