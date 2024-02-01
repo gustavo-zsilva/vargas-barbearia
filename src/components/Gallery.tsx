@@ -1,10 +1,33 @@
 import Image from 'next/image'
-import { promises as fs } from 'fs'
+// import { promises as fs } from 'fs'
+import { fetchWrapper } from '../utils/fetch'
+
+type Photo = {
+    photo_reference: string,
+}
+
+type PhotosData = {
+    photos: Photo[],
+}
+
+const baseUrl = process.env.GOOGLE_BASE_URL
+const apiKey = process.env.GOOGLE_API_KEY
+
+async function getPhotoUrl(photo_reference: string) {
+    const data = await fetch(`${baseUrl}/place/photo?maxwidth=400&photo_reference=${photo_reference}&key=${apiKey}`)
+    return data.url
+}
 
 export async function Gallery() {
 
-    const file = await fs.readFile(process.cwd() + '/imageLinks.json', 'utf-8')
-    const imageLinks: string[] = JSON.parse(file)
+    // const file = await fs.readFile(process.cwd() + '/imageLinks.json', 'utf-8')
+    // const imageLinks: string[] = JSON.parse(file)
+
+    const { result } = await fetchWrapper<{ result: PhotosData }>('/place/details', {
+        fields: ['photos'],
+    })
+
+    const photoUrls = await Promise.all(result.photos.map(({ photo_reference }) => getPhotoUrl(photo_reference)))
 
     return (
         <div>
@@ -29,7 +52,7 @@ export async function Gallery() {
                     before:from-grey
                     before:to-transparent
                 ">
-                    {imageLinks.map(link => (
+                    {photoUrls.splice(0, 8).map(link => (
                         <picture key={link} className="inline-block mb-6 rounded-sm overflow-hidden">
                             <Image
                                 src={link}
