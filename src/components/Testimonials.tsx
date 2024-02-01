@@ -26,18 +26,18 @@ export async function Testimonials() {
     const relevantTestimonials = testimonialData.reviews.splice(0, 3)
 
     return (
-        <section className="flex flex-col bg-yellow px-44 py-16 items-center justify-center gap-16">
+        <section className="flex flex-col bg-yellow px-desktop py-16 items-center justify-center gap-16">
             <h1 className="
                 text-lg
                 relative
                 before:content-['']
                 before:absolute
-                before:left-0
+                before:left-[50%]
                 before:h-0.5
                 before:w-[80px]
+                before:ml-[-40px]
                 before:top-[-30%]
                 before:bg-brown
-                before:translate-x-1/2
             ">
                 DEPOIMENTOS
             </h1>
