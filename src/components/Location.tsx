@@ -8,7 +8,7 @@ export function Location() {
                 Córrego Grande
             </span>
             <span className="underline underline-offset-2">
-                <a href="#">
+                <a href="#contact">
                     Ver rotas
                 </a>
             </span>
