@@ -20,13 +20,14 @@ async function getPhotoUrl(photo_reference: string) {
 
 export async function Gallery() {
 
+    // Fetch static images
     // const file = await fs.readFile(process.cwd() + '/imageLinks.json', 'utf-8')
     // const imageLinks: string[] = JSON.parse(file)
 
     const { result } = await fetchWrapper<{ result: PhotosData }>('/place/details', {
         fields: ['photos'],
     })
-
+    
     const photoUrls = await Promise.all(result.photos.map(({ photo_reference }) => getPhotoUrl(photo_reference)))
 
     return (
