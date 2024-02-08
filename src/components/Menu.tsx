@@ -25,11 +25,11 @@ export async function Menu() {
     return (
         <div>
             <div className="flex items-center mb-6 gap-2">
-                <h3 className="flex items-center gap-2 text-base bg-grey">
+                <h3 className="flex items-center gap-2 text-base">
                     Pronto para pedir?
                     <BsScissors />
                 </h3>
-                <hr className="flex border-1 flex-1 rounded-full"/>
+                <hr className="flex border-1 flex-1 rounded-full" />
             </div>
             <ul className="border-x-2 border-grey-dark max-h-[500px] overflow-scroll">
                 {menuItems.map(item => (
