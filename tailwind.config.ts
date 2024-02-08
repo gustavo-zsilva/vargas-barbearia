@@ -30,7 +30,7 @@ const config: Config = {
       },
       
       height: {
-        '2-screen': '150vh',
+        '2-screen': '140vh',
       },
 
       boxShadow: {
