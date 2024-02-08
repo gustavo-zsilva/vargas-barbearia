@@ -30,7 +30,7 @@ export async function Testimonials() {
     const relevantTestimonials = testimonialData.reviews.splice(0, 3)
 
     return (
-        <section className="flex flex-col bg-yellow px-desktop py-16 items-center justify-center gap-16">
+        <section className="flex flex-col px-mobile bg-yellow desktop:px-desktop py-16 items-center justify-center gap-16">
             <h1 className="
                 text-lg
                 relative
@@ -45,7 +45,7 @@ export async function Testimonials() {
             ">
                 DEPOIMENTOS
             </h1>
-            <div className="grid grid-cols-3 gap-24 text-grey">
+            <div className="flex flex-col gap-8 text-grey desktop:grid desktop:grid-cols-3 desktop:gap-24">
                 {relevantTestimonials.map(review => (
                     <UserComment
                         key={review.author_url}

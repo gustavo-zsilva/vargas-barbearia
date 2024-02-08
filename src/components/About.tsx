@@ -4,7 +4,7 @@ import { MdOutlinePayment } from "react-icons/md";
 
 export function About() {
     return (
-        <div className="grid grid-cols-2 gap-8 mt-8">
+        <div className="mb-24 grid grid-cols-2 gap-8 mt-8 desktop:mb-0">
             
             <div className="flex col-span-2 items-center gap-4">
                 <h2>
@@ -14,19 +14,19 @@ export function About() {
             </div>
 
             <li className="flex items-center gap-4">
-                <FaCheck size={24} />
+                <FaCheck size={24} className="min-w-fit" />
                 Banheiro
             </li>
             <li className="flex items-center gap-4">
-                <FaCheck size={24} />
+                <FaCheck size={24} className="min-w-fit" />
                 Banheiro de gênero neutro
             </li>
             <li className="flex items-center gap-4">
-                <FaCheck size={24} />
+                <FaCheck size={24} className="min-w-fit" />
                 Empresa que acolhe a comunidade LGBTQ+
             </li>
             <li className="flex items-center gap-4">
-                <FaRegCalendarCheck size={24} />
+                <FaRegCalendarCheck size={24} className="min-w-fit" />
                 Necessário fazer agendamento
             </li>
             
@@ -38,11 +38,11 @@ export function About() {
             </div>
 
             <li className="flex items-center gap-4">
-                <MdOutlinePayment size={24} />
+                <MdOutlinePayment size={24} className="min-w-fit" />
                 Cartão de débito
             </li>
             <li className="flex items-center gap-4">
-                <FaCheck size={24} />
+                <FaCheck size={24} className="min-w-fit" />
                 Pagamentos por dispositivo móvel via NFC
             </li>
         </div>

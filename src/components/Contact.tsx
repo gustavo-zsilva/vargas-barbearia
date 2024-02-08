@@ -1,10 +1,6 @@
 import { GoogleMapsEmbed } from '@next/third-parties/google'
 import { fetchWrapper } from '../utils/fetch'
 
-type AllPlacesData = {
-    place_id: string,
-}
-
 type ContactData = {
     formatted_phone_number: string,
     formatted_address: string,
@@ -23,7 +19,7 @@ export async function Contact() {
     return (
         <section
             id="contact"
-            className="flex flex-col justify-center items-center mx-desktop py-16 min-h-[80vh]"
+            className="flex flex-col justify-center items-center mx-mobile desktop:mx-desktop py-16 min-h-[80vh]"
         >
             <h1 className="
                 text-lg
@@ -40,8 +36,8 @@ export async function Contact() {
             ">
                 ENTRE EM CONTATO
             </h1>
-            <div className="grid grid-cols-2 w-full gap-20">
-                <div>
+            <div className="desktop:grid desktop:grid-cols-2 w-full gap-20">
+                <div className="mb-8 desktop:mb-0">
                     <GoogleMapsEmbed
                         apiKey={apiKey}
                         height={400}
@@ -50,7 +46,7 @@ export async function Contact() {
                         q="Vargas+Barbeiro,576"
                         style="box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);"
                     />
-                    <button className="flex justify-center uppercase text-grey font-bold bg-yellow w-full  mt-10 rounded-sm shadow">
+                    <button className="flex justify-center uppercase text-grey font-bold bg-yellow w-full mt-10 rounded-sm shadow">
                         <a
                             href="https://www.google.com/maps/dir//Vargas+Barbeiro/data=!4m8!4m7!1m0!1m5!1m1!1s0x952739c105df5175:0x17a91eb1e6682089!2m2!1d-48.511123399999995!2d-27.5999034"
                             target="_blank"

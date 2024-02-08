@@ -43,7 +43,7 @@ export async function Gallery() {
                     />
                 </main>
                 <div className="
-                    columns-2
+                    desktop:columns-2
                     gap-6
                     before:absolute
                     before:bottom-0

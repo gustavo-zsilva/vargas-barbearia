@@ -39,6 +39,12 @@ const config: Config = {
 
       spacing: {
         'desktop': '11rem',
+        'mobile': '2rem',
+      },
+
+      screens: {
+        'desktop': '1500px',
+        
       }
     },
   },

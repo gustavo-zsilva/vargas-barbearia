@@ -35,9 +35,9 @@ export async function Menu() {
                 {menuItems.map(item => (
                     <li key={item.name} className="flex justify-between items-center border-b-2 border-grey-dark mx-6 py-5">
                         <p>{item.name}</p>
-                        <div className="flex gap-3 items-baseline relative">
-                            {item.isPriceRanged && <span className="opacity-75">a partir de </span>}
-                            <span className="text-lg font-semibold">{item.price} R$</span>
+                        <div className="flex gap-2 desktop:gap-3 items-baseline relative">
+                            {item.isPriceRanged && <span className="opacity-75 text-right">a partir de </span>}
+                            <span className="sm:text-lg text-base font-semibold text-right">{item.price} R$</span>
                             {
                                 item.isStarred &&
                                     <TiStarburst style={{
