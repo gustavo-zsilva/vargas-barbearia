@@ -2,6 +2,7 @@ import { Header } from "../components/Header";
 import { Location } from "../components/Location";
 import { Outdoor } from "../components/Outdoor";
 import { Menu } from "../components/Menu";
+import { About } from "../components/About";
 import { Gallery } from "../components/Gallery";
 import { Testimonials } from "../components/Testimonials";
 import { Contact } from "../components/Contact";
@@ -19,6 +20,7 @@ export default function Home() {
           <Location />
           <Outdoor />
           <Menu />
+          <About />
         </div>
         
         <div className="flex-1">
