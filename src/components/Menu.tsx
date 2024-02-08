@@ -11,8 +11,16 @@ type MenuItem = {
 }
 
 export async function Menu() {
-    const file = await fs.readFile(process.cwd() + '/menuItems.json', 'utf-8')
-    const menuItems: MenuItem[] = JSON.parse(file)
+    // const file = await fs.readFile(process.cwd() + '/menuItems.json', 'utf-8')
+    // const menuItems: MenuItem[] = JSON.parse(file)
+
+    const response = await fetch('http://localhost:3000/api', {
+        next: {
+            revalidate: 86400 // 24h
+        }
+    })
+    const menuData = await response.json()
+    const menuItems: MenuItem[] = JSON.parse(menuData)
     
     return (
         <div>
@@ -23,7 +31,7 @@ export async function Menu() {
                 </h3>
                 <hr className="flex border-1 flex-1 rounded-full"/>
             </div>
-            <ul className="border-x-2 border-grey-dark">
+            <ul className="border-x-2 border-grey-dark max-h-[500px] overflow-scroll">
                 {menuItems.map(item => (
                     <li key={item.name} className="flex justify-between items-center border-b-2 border-grey-dark mx-6 py-5">
                         <p>{item.name}</p>
@@ -34,7 +42,7 @@ export async function Menu() {
                                 item.isStarred &&
                                     <TiStarburst style={{
                                         position: 'absolute',
-                                        top:0,
+                                        top: 0,
                                         right: 0,
                                         transform: 'translateY(-70%) translateX(70%)',
                                     }}
