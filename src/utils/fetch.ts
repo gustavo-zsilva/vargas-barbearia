@@ -22,7 +22,7 @@ export async function fetchWrapper<T = unknown>(input: RequestInfo | URL, params
 
     const data = await result.json()
 
-    console.log(data);
+    // console.log(data);
     
     if (!result.ok) {
         throw new Error('Failed to fetch data')
