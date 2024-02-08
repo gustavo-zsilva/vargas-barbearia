@@ -36,9 +36,10 @@ export async function Gallery() {
                 <main className="mb-6 rounded-sm overflow-hidden">
                     <Image
                         src="https://lh3.googleusercontent.com/p/AF1QipMknrFqHTkaaaUh6Dp-Qz08Ds2ftLnvPd2Df4yH=w1080-h608-p-no-v0"
-                        alt="Main Image"
+                        alt="Vargas Barbearia Banner"
                         width={850}
                         height={480}
+                        priority
                     />
                 </main>
                 <div className="
@@ -57,7 +58,7 @@ export async function Gallery() {
                         <picture key={link} className="inline-block mb-6 rounded-sm overflow-hidden">
                             <Image
                                 src={link}
-                                alt="Img"
+                                alt="Foto da barbearia"
                                 width={450}
                                 height={300}
                             />
@@ -65,8 +66,12 @@ export async function Gallery() {
                     ))}
                 </div>
             </div>
-            <button className="mt-6 border-2 border-brown w-full py-4 rounded-sm bg-grey hover:brightness-95 ease-linear duration-75">
-                <a href="#">
+            <button className="mt-6 border-2 border-brown w-full rounded-sm bg-grey hover:brightness-95 ease-linear duration-75">
+                <a
+                    href="https://www.google.com/localservices/prolist?spp=Cg0vZy8xMWpsMTE5cXZr&src=2&slp=UhUIARIREg8iDS9nLzExamwxMTlxdms#ts=4"
+                    target="_blank"
+                    className="flex py-4 justify-center"
+                >
                     Ver tudo
                 </a>
             </button>

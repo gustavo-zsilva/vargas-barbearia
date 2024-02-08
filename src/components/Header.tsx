@@ -31,8 +31,14 @@ export async function Header() {
                         {phoneNumber}
                     </a>
                 </p>
-                <button className="bg-brown px-6 py-2 text-grey font-bold rounded-sm shadow-sm">
-                    Agendar
+                <button className="bg-brown text-grey font-bold rounded-sm shadow-sm">
+                    <a
+                        href="https://www.whatsapp.com/product/4329414817136290/554898224490/?app_absent=0"
+                        target="_blank"
+                        className="flex flex-1 px-6 h-full items-center"
+                    >
+                        Agendar
+                    </a>
                 </button>
                 <WhatsappButton />
             </div>

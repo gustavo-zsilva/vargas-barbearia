@@ -21,6 +21,10 @@ export async function Testimonials() {
     
     const { result: testimonialData } = await fetchWrapper<{ result: TestimonialsData }>('/place/details', {
         fields: ['reviews'],
+    }, {
+        next: {
+            revalidate: 86400 // 24h
+        }
     })
 
     const relevantTestimonials = testimonialData.reviews.splice(0, 3)
@@ -50,10 +54,22 @@ export async function Testimonials() {
                 ))}
             </div>
             <div className="flex items-center gap-16 text-grey">
-                <button className="bg-yellow-light font-semibold rounded-sm py-4 px-6 shadow">
-                    Deixe o seu depoimento!
+                <button className="bg-yellow-light font-semibold rounded-sm shadow">
+                    <a
+                        href="https://www.google.com/localservices/prolist?spp=Cg0vZy8xMWpsMTE5cXZr&src=2&slp=UhUIARIREg8iDS9nLzExamwxMTlxdms#ts=3"
+                        target="_blank"
+                        className="flex py-4 px-6"
+                    >
+                        Deixe o seu depoimento!
+                    </a>
                 </button>
-                <a href="#" className="underline underline-offset-2">Saiba mais</a>
+                <a
+                    href="https://g.co/kgs/F1i3iSc"
+                    target="_blank"
+                    className="underline underline-offset-2"
+                >
+                    Saiba mais
+                </a>
             </div>
         </section>
     )

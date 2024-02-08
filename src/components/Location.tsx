@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { FaLocationDot } from 'react-icons/fa6'
 
 export function Location() {
@@ -8,9 +9,9 @@ export function Location() {
                 Córrego Grande
             </span>
             <span className="underline underline-offset-2">
-                <a href="#contact">
+                <Link href="/#contact">
                     Ver rotas
-                </a>
+                </Link> 
             </span>
         </div>
     )

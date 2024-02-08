@@ -94,7 +94,11 @@ export async function Outdoor() {
                 </span>
             </div>
             <button className={`${styles.bgDark} w-full rounded-b-lg border-t-2 ${styles.border} hover:brightness-95`}>
-                <a href="#" className="flex py-2.5 items-center justify-center gap-3">
+                <a
+                    href="https://www.whatsapp.com/product/4329414817136290/554898224490/?app_absent=0"
+                    target="_blank"
+                    className="flex py-2.5 items-center justify-center gap-3"
+                >
                     Agendar horário
                     <FaExternalLinkAlt size={16} />
                 </a>
