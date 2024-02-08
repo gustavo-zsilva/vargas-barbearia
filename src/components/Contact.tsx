@@ -50,15 +50,22 @@ export async function Contact() {
                         q="Vargas+Barbeiro,576"
                         style="box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);"
                     />
-                    <button className="uppercase text-grey font-bold bg-yellow w-full py-5 mt-10 rounded-sm shadow">
-                        Ver Rotas
+                    <button className="flex justify-center uppercase text-grey font-bold bg-yellow w-full  mt-10 rounded-sm shadow">
+                        <a
+                            href="https://www.google.com/maps/dir//Vargas+Barbeiro/data=!4m8!4m7!1m0!1m5!1m1!1s0x952739c105df5175:0x17a91eb1e6682089!2m2!1d-48.511123399999995!2d-27.5999034"
+                            target="_blank"
+                            className="py-5 w-full"
+                        >
+                            Ver Rotas
+                        </a>
                     </button>
                 </div>
+
                 <div className="flex flex-col gap-8">
                     <div>
                         <h2 className="text-base mb-3">Contato:</h2>
                         <p>{result.formatted_phone_number}</p>
-                        <p>{result.formatted_phone_number}</p>
+                        <p>(48) 99822-4490</p>
                     </div>
                     <div>
                         <h2 className="text-base mb-3">Endereço:</h2>
