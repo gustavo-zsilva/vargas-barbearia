@@ -7,6 +7,9 @@ import { Gallery } from "../components/Gallery";
 import { Testimonials } from "../components/Testimonials";
 import { Contact } from "../components/Contact";
 import { Footer } from "../components/Footer";
+import { Suspense } from "react";
+import Loading from "./loading";
+import { GallerySkeleton } from "../components/GallerySkeleton";
 
 export default function Home() {
   return (
@@ -18,13 +21,14 @@ export default function Home() {
         items-center
         mx-mobile
         py-16
-        desktop:flex-row
-        desktop:items-start
+        sm-desktop:flex-row
+        sm-desktop:items-start
+        sm-desktop:gap-16
+        sm-desktop:text-base
+        sm-desktop:mx-sm-desktop
         desktop:mx-desktop
-        desktop:text-base
-        desktop:gap-16
       ">
-        <div className="flex flex-col desktop:w-5/12 gap-10">
+        <div className="flex flex-col gap-10 sm-desktop:w-5/12">
           <p className="text-lg text-center desktop:text-left">
             Cortes de cabelo & barba cinco estrelas, feitos há mais de 25 anos no mercado.
           </p>
@@ -35,7 +39,9 @@ export default function Home() {
         </div>
         
         <div className="flex-1">
-          <Gallery />
+          <Suspense fallback={<GallerySkeleton />}>
+            <Gallery />
+          </Suspense>
         </div>
       </div>
 

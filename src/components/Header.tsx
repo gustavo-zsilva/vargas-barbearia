@@ -17,9 +17,23 @@ export async function Header() {
     const phoneNumber = result.formatted_phone_number
 
     return (
-        <header className="bg-yellow py-4 flex items-center justify-between px-44 shadow-md">
+        <header className="
+            bg-yellow
+            py-4
+            px-mobile
+            flex
+            flex-col
+            items-center
+            gap-2
+            shadow-md
+            sm-desktop:flex-row
+            sm-desktop:justify-between
+            sm-desktop:gap-0
+            sm-desktop:px-sm-desktop
+            desktop:px-desktop
+        ">
             <h1 className={`text-xl ${kenia.className} cursor-pointer`}>Vargas Barbearia</h1>
-            <div className="flex gap-8">
+            <div className="flex flex-col-reverse gap-5 sm-desktop:flex-row">
                 <p className="flex gap-2.5 self-center">
                     Atendimento:
                     <a
@@ -35,12 +49,12 @@ export async function Header() {
                     <a
                         href="https://www.whatsapp.com/product/4329414817136290/554898224490/?app_absent=0"
                         target="_blank"
-                        className="flex flex-1 px-6 h-full items-center"
+                        className="flex flex-1 py-3 sm-desktop:px-6 h-full items-center justify-center"
                     >
                         Agendar
                     </a>
                 </button>
-                <WhatsappButton />
+                <WhatsappButton className="hidden sm-desktop:flex" />
             </div>
         </header>
     )

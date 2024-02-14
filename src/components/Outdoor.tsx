@@ -24,7 +24,6 @@ type PlaceData = {
 }
 
 async function getPlaceData() {
-
     const { result: placeData } = await fetchWrapper<{ result: PlaceData }>(`/place/details`, {
         fields: ['current_opening_hours/open_now', 'current_opening_hours/periods'],
     }, { cache: 'no-cache' })
@@ -66,7 +65,7 @@ export async function Outdoor() {
     }
 
     const nextWorkingDay = getNextWorkingDay()
-    
+
     // Transforms date ("2024/01/30") to weekday ("Tuesday")
     const formattedDate = new Date(nextWorkingDay.open.date
         .replaceAll('-', '/'))

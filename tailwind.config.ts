@@ -39,12 +39,13 @@ const config: Config = {
 
       spacing: {
         'desktop': '11rem',
+        'sm-desktop': '5rem',
         'mobile': '2rem',
       },
 
       screens: {
+        'sm-desktop': '1000px',
         'desktop': '1500px',
-        
       }
     },
   },

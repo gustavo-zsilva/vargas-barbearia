@@ -1,9 +1,9 @@
-import { fetchWrapper } from "../utils/fetch";
+'use client'
+
+import { useEffect, useState } from 'react'
 import { UserComment } from "./UserComment";
 
-type AllPlacesData = {
-    place_id: string,
-}
+const baseUrl = process.env.NODE_ENV
 
 type Review = {
     author_name: string,
@@ -13,21 +13,43 @@ type Review = {
     text: string,
 }
 
-type TestimonialsData = {
-    reviews: Review[]
-}
-
-export async function Testimonials() {
+export function Testimonials() {
     
-    const { result: testimonialData } = await fetchWrapper<{ result: TestimonialsData }>('/place/details', {
-        fields: ['reviews'],
-    }, {
-        next: {
-            revalidate: 86400 // 24h
-        }
-    })
+    const [reviews, setReviews] = useState<Review[]>([])
+    const [relevantReviews, setRelevantReviews] = useState<Review[]>([])
 
-    const relevantTestimonials = testimonialData.reviews.splice(0, 3)
+    useEffect(() => {
+        fetch(`http://localhost:3000/api/reviews`)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                setReviews(data)
+                setRelevantReviews(data.splice(0, 3))
+            })
+            .catch(err => console.error(err))
+
+            window.addEventListener('resize', () => {
+                console.log(window.innerWidth);
+                
+                if (window.innerWidth >= 1500) {
+                    return setRelevantReviews(reviews.splice(0, 4))
+                }
+
+                setRelevantReviews(reviews.splice(0, 3))
+            })
+
+        return setReviews([])
+    }, [])
+    
+    useEffect(() => {
+        if (window.innerWidth >= 1500) {
+            setRelevantReviews(reviews.splice(0, 4))
+        }
+    }, [reviews])
+
+    // console.log(window.innerHeight)
+
+    // const relevantTestimonials = testimonialData.reviews.splice(0, 3)
 
     return (
         <section className="flex flex-col px-mobile bg-yellow desktop:px-desktop py-16 items-center justify-center gap-16">
@@ -45,8 +67,19 @@ export async function Testimonials() {
             ">
                 DEPOIMENTOS
             </h1>
-            <div className="flex flex-col gap-8 text-grey desktop:grid desktop:grid-cols-3 desktop:gap-24">
-                {relevantTestimonials.map(review => (
+            <div className="
+                flex
+                flex-col
+                gap-8
+                max-w-[850px]
+                text-grey
+                sm-desktop:grid
+                sm-desktop:grid-cols-2
+                desktop:grid-cols-3
+                desktop:max-w-full
+                desktop:gap-14
+            ">
+                {relevantReviews.map(review => (
                     <UserComment
                         key={review.author_url}
                         review={review}

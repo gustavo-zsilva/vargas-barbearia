@@ -4,7 +4,7 @@ import { MdOutlinePayment } from "react-icons/md";
 
 export function About() {
     return (
-        <div className="mb-24 grid grid-cols-2 gap-8 mt-8 desktop:mb-0">
+        <div className="text-sm min-[480px]:text-base mb-24 grid grid-cols-2 gap-8 mt-8 desktop:mb-0">
             
             <div className="flex col-span-2 items-center gap-4">
                 <h2>

@@ -20,7 +20,17 @@ export function UserComment({ review }: UserCommentProps) {
     const formattedAuthorName = review.author_name.split(' ')[0] + ` ${authorSurname}`
 
     return (
-        <div className="flex flex-col bg-yellow-light p-7 gap-6 rounded-2xl shadow-sm">
+        <div className="
+            flex
+            flex-col
+            bg-yellow-light
+            p-7
+            gap-6
+            rounded-2xl
+            shadow-sm
+            sm-desktop:first:col-span-2
+            desktop:first:col-span-1
+        ">
             <header className="flex justify-between items-center gap-8">
                 <div className="flex">
                     {ratingArr.map(ratingNum => (
