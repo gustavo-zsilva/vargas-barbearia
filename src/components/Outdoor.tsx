@@ -17,15 +17,10 @@ type Period = {
 type OpeningHours = {
     open_now: boolean,
     periods: Period[],
-    weekday_text: string,
 }
 
 type PlaceData = {
     current_opening_hours: OpeningHours,
-}
-
-type AllPlacesData = {
-    place_id: string,
 }
 
 async function getPlaceData() {
@@ -38,6 +33,7 @@ async function getPlaceData() {
 }
 
 function formatDateStrings({ close, open }: Period) {
+
     const closeTime = close.time.slice(0, 2) + ':' + close.time.slice(2)
     const openTime = open.time.slice(0, 2) + ':' + open.time.slice(2)
 
@@ -50,25 +46,27 @@ function formatDateStrings({ close, open }: Period) {
 export async function Outdoor() {
 
     const { placeData } = await getPlaceData()
-
+    
     const isOpenNow = placeData.current_opening_hours.open_now
     const workingPeriods = placeData.current_opening_hours.periods
 
-    const date = new Date()
-    const currentDay = date.getDay()
-    const workingDay = formatDateStrings(workingPeriods[currentDay - 1])
+    const currentDay = new Date().getDay()
+
+    const workingDayIndex = workingPeriods.findIndex(period => period.open.day === currentDay)
+    const workingDay = workingDayIndex > -1 ? formatDateStrings(workingPeriods[workingDayIndex]) : null
     
     function getNextWorkingDay() {
-        const workingPeriodsLastIndex = workingPeriods.length - 1
-    
-        if (workingDay.close.day === workingPeriodsLastIndex) {
+        const lastWorkingDay = workingPeriods.length
+
+        if (workingDay?.open.day === lastWorkingDay) {
             return formatDateStrings(workingPeriods[0])
         }
-        // Current Day is actually the next day, because the array days count starts on 1, not 0
-        return formatDateStrings(workingPeriods[currentDay])
+
+        return formatDateStrings(workingPeriods[workingDayIndex + 1])
     }
 
     const nextWorkingDay = getNextWorkingDay()
+    
     // Transforms date ("2024/01/30") to weekday ("Tuesday")
     const formattedDate = new Date(nextWorkingDay.open.date
         .replaceAll('-', '/'))
@@ -76,24 +74,40 @@ export async function Outdoor() {
             weekday: 'long'
         })
 
-    const styles = {
-        bg: isOpenNow ? 'bg-green' : 'bg-red',
-        bgDark: isOpenNow ? 'bg-green-dark' : 'bg-red-dark',
-        border: isOpenNow ? 'border-green-darker' : 'border-red-darker',
-    }
-
     return (
         <div className="w-full text-grey shadow-sm">
-            <div className={`flex flex-col ${styles.bg} items-center py-3`}>
+            <div
+                data-open={isOpenNow}
+                className="
+                    flex
+                    flex-col
+                    data-[open=true]:bg-green
+                    data-[open=false]:bg-red
+                    items-center
+                    py-3
+                    "
+                >
                 <span className="font-bold">{isOpenNow ? 'ABERTO AGORA' : 'FECHADO'}</span>
                 <span>
                     {isOpenNow ?
-                        `até ${workingDay.close.time}`
-                        : `abre ${currentDay === 5 ? formattedDate : 'amanhã'} ás ${nextWorkingDay.open.time}`
+                        `até ${workingDay?.close.time}`
+                        : `abre ${currentDay === 6 ? formattedDate : 'amanhã'} ás ${nextWorkingDay.open.time}`
                     }
                 </span>
             </div>
-            <button className={`${styles.bgDark} w-full rounded-b-lg border-t-2 ${styles.border} hover:brightness-95`}>
+            <button
+                data-open={isOpenNow}
+                className="
+                    data-[open=false]:bg-red-dark
+                    data-[open=true]:bg-green-dark
+                    w-full
+                    rounded-b-lg
+                    border-t-2
+                    data-[open=false]:border-red-darker
+                    data-[open=true]:border-green-darker
+                    hover:brightness-95
+                    "
+                >
                 <a
                     href="https://www.whatsapp.com/product/4329414817136290/554898224490/?app_absent=0"
                     target="_blank"
