@@ -1,9 +1,5 @@
-'use client'
-
-import { useEffect, useState } from 'react'
+import { fetchWrapper } from "../utils/fetch";
 import { UserComment } from "./UserComment";
-
-const baseUrl = process.env.NODE_ENV
 
 type Review = {
     author_name: string,
@@ -13,43 +9,22 @@ type Review = {
     text: string,
 }
 
-export function Testimonials() {
+type TestimonialsData = {
+    reviews: Review[]
+}
+
+export async function Testimonials() {
     
-    const [reviews, setReviews] = useState<Review[]>([])
-    const [relevantReviews, setRelevantReviews] = useState<Review[]>([])
-
-    useEffect(() => {
-        fetch(`http://localhost:3000/api/reviews`)
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-                setReviews(data)
-                setRelevantReviews(data.splice(0, 3))
-            })
-            .catch(err => console.error(err))
-
-            window.addEventListener('resize', () => {
-                console.log(window.innerWidth);
-                
-                if (window.innerWidth >= 1500) {
-                    return setRelevantReviews(reviews.splice(0, 4))
-                }
-
-                setRelevantReviews(reviews.splice(0, 3))
-            })
-
-        return setReviews([])
-    }, [])
     
-    useEffect(() => {
-        if (window.innerWidth >= 1500) {
-            setRelevantReviews(reviews.splice(0, 4))
+    const { result: testimonialData } = await fetchWrapper<{ result: TestimonialsData }>('/place/details', {
+        fields: ['reviews'],
+    }, {
+        next: {
+            revalidate: 86400 // 24h
         }
-    }, [reviews])
+    })
 
-    // console.log(window.innerHeight)
-
-    // const relevantTestimonials = testimonialData.reviews.splice(0, 3)
+    const relevantTestimonials = testimonialData.reviews.splice(0, 4)
 
     return (
         <section className="flex flex-col px-mobile bg-yellow desktop:px-desktop py-16 items-center justify-center gap-16">
@@ -79,7 +54,7 @@ export function Testimonials() {
                 desktop:max-w-full
                 desktop:gap-14
             ">
-                {relevantReviews.map(review => (
+                {relevantTestimonials.map(review => (
                     <UserComment
                         key={review.author_url}
                         review={review}

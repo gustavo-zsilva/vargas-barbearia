@@ -28,8 +28,10 @@ export function UserComment({ review }: UserCommentProps) {
             gap-6
             rounded-2xl
             shadow-sm
+            last:hidden
+            sm-desktop:last:flex
             sm-desktop:first:col-span-2
-            desktop:first:col-span-1
+            sm-desktop:last:col-span-2
         ">
             <header className="flex justify-between items-center gap-8">
                 <div className="flex">
