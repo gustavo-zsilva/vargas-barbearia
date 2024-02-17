@@ -2,6 +2,8 @@ const apiKey = process.env.GOOGLE_API_KEY
 const baseURL = process.env.GOOGLE_BASE_URL
 const baseAddress = process.env.GOOGLE_BASE_ADDRESS
 
+import 'server-only'
+
 export async function fetchWrapper<T = unknown>(input: RequestInfo | URL, params?: any | undefined, init?: RequestInit | undefined) {
     
     const placeIdData = await fetch(`${baseURL}/geocode/json?address=${baseAddress}&key=${apiKey}`)

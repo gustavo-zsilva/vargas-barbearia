@@ -35,10 +35,11 @@ export async function Gallery() {
             <div className="h-2-screen overflow-hidden relative max-w-[850px]">
                 <main className="mb-6 rounded-sm overflow-hidden relative w-full">
                     <Image
-                        src="https://lh3.googleusercontent.com/p/AF1QipMknrFqHTkaaaUh6Dp-Qz08Ds2ftLnvPd2Df4yH=w1080-h608-p-no-v0"
+                        src="/banner.jpg"
                         alt="Vargas Barbearia Banner"
                         width={850}
-                        height={480}
+                        height={250}
+                        // 850 - 480
                         priority
                     />
                 </main>
