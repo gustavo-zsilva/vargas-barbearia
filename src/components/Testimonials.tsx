@@ -15,8 +15,7 @@ type TestimonialsData = {
 
 export async function Testimonials() {
     
-    
-    const { result: testimonialData } = await fetchWrapper<{ result: TestimonialsData }>('/place/details', {
+    const { result: testimonialsData } = await fetchWrapper<{ result: TestimonialsData }>('/place/details', {
         fields: ['reviews'],
     }, {
         next: {
@@ -24,7 +23,7 @@ export async function Testimonials() {
         }
     })
 
-    const relevantTestimonials = testimonialData.reviews.splice(0, 4)
+    const relevantTestimonials = testimonialsData.reviews.splice(0, 4)
 
     return (
         <section className="flex flex-col px-mobile bg-yellow desktop:px-desktop py-16 items-center justify-center gap-16">
