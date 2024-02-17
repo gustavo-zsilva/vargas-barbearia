@@ -21,6 +21,7 @@ const config: Config = {
         'red': '#D64045',
         'red-dark': '#CA2E33',
         'red-darker': '#B93B3F',
+        'red-error': '#F2545B',
       },
 
       fontSize: {

@@ -56,7 +56,7 @@ export async function Contact() {
                         </a>
                     </button>
                 </div>
-
+                
                 <div className="flex flex-col gap-8">
                     <div>
                         <h2 className="text-base mb-3">Contato:</h2>

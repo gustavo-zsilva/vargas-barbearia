@@ -10,6 +10,8 @@ import { Footer } from "../components/Footer";
 import { Suspense } from "react";
 import Loading from "./loading";
 import { GallerySkeleton } from "../components/GallerySkeleton";
+import Error from './error'
+import { ErrorBoundary } from 'react-error-boundary'
 
 export default function Home() {
   return (
@@ -33,20 +35,36 @@ export default function Home() {
             Cortes de cabelo & barba cinco estrelas, feitos há mais de 25 anos no mercado.
           </p>
           <Location />
-          <Outdoor />
-          <Menu />
+          <ErrorBoundary fallbackRender={Error}>
+            <Outdoor />
+          </ErrorBoundary>
+          <ErrorBoundary fallbackRender={Error}>
+            <Menu />
+          </ErrorBoundary>
           <About />
         </div>
         
         <div className="flex-1">
-          <Suspense fallback={<GallerySkeleton />}>
-            <Gallery />
-          </Suspense>
+          <ErrorBoundary FallbackComponent={Error}>
+            <Suspense fallback={<GallerySkeleton />}>
+              <Gallery />
+            </Suspense>
+          </ErrorBoundary>
         </div>
       </div>
 
-      <Testimonials />
-      <Contact />
+      <ErrorBoundary
+        // @ts-ignore
+        fallback={<Error className="rounded-none py-10" />}
+      >
+        <Testimonials />
+      </ErrorBoundary>
+      <ErrorBoundary
+        // @ts-ignore
+        fallback={<Error className="rounded-none my-6" />}
+      >
+        <Contact />
+      </ErrorBoundary>
       <Footer />
     </main>
   );
