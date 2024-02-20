@@ -11,16 +11,18 @@ type MenuItem = {
 }
 
 export async function Menu() {
-    const file = await fs.readFile(process.cwd() + '/menuItems.json', 'utf-8')
-    const menuItems: MenuItem[] = JSON.parse(file)
+    // const file = await fs.readFile(process.cwd() + '/menuItems.json', 'utf-8')
+    // const menuItems: MenuItem[] = JSON.parse(file)
 
-    // const response = await fetch('http://localhost:3000/api', {
-    //     next: {
-    //         revalidate: 86400 // 24h
-    //     }
-    // })
-    // const menuData = await response.json()
-    // const menuItems: MenuItem[] = JSON.parse(menuData)
+    const url = process.env.NEXT_PUBLIC_VERCEL_URL
+
+    const response = await fetch(`https://${url}/api`, {
+        next: {
+            revalidate: 86400 // 24h
+        }
+    })
+    const menuData = await response.json()
+    const menuItems: MenuItem[] = JSON.parse(menuData)
     
     return (
         <div>
