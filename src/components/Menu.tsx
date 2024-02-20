@@ -14,8 +14,8 @@ export async function Menu() {
     // const file = await fs.readFile(process.cwd() + '/menuItems.json', 'utf-8')
     // const menuItems: MenuItem[] = JSON.parse(file)
 
-    const url = process.env.VERCEL_URL
-    const protocol = process.env.VERCEL_ENV === 'development' ? 'http' : 'https'
+    const url = process.env.VERCEL_URL || process.env.NEXT_PUBLIC_VERCEL_URL
+    const protocol = process.env.VERCEL_ENV || process.env.NEXT_PUBLIC_VERCEL_ENV === 'development' ? 'http' : 'https'
 
     const response = await fetch(`${protocol}://${url}/api`, {
         next: {
