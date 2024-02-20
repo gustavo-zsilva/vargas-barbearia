@@ -1,15 +1,14 @@
 export function GallerySkeleton() {
     return (
         <div>
-            <div className="h-2-screen overflow-hidden relative max-w-[850px]">
-                <main className="mb-6 w-[850px] h-[480px] bg-grey-dark animate-pulse rounded-sm" />
+            <div className="h-2-screen overflow-hidden relative w-screen sm-desktop:w-full max-w-[850px]">
+                <main className="mb-6 h-[480px] bg-grey-dark animate-pulse rounded-sm" />
                 <div className="
                     grid
                     min-[450px]:grid-cols-2
                     gap-6
-                    
                 ">
-                    {Array.from({ length: 4 }, (value, index) => index).map(id => (
+                    {Array.from({ length: 6 }, (value, index) => index).map(id => (
                         <picture key={id} className="w-full h-[300px] bg-grey-dark animate-pulse inline-block rounded-sm overflow-hidden" />
                     ))}
                 </div>
