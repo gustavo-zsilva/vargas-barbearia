@@ -12,28 +12,28 @@ export function MenuSkeleton() {
             </div>
             <div className="max-h-[500px] rounded-sm bg-white">
                 <div className="h-12 flex items-center w-full justify-between py-10 px-6 animate-pulse">
-                    <span className="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-32" />
-                    <span className="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-14" />
+                    <span className="h-4 bg-gray-300 rounded-full w-32" />
+                    <span className="h-4 bg-gray-300 rounded-full w-14" />
                 </div>
                 <div className="h-12 flex items-center w-full justify-between py-10 px-6 animate-pulse">
-                    <span className="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-32" />
-                    <span className="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-16" />
+                    <span className="h-4 bg-gray-300 rounded-full w-32" />
+                    <span className="h-4 bg-gray-300 rounded-full w-16" />
                 </div>
                 <div className="h-12 flex items-center w-full justify-between py-10 px-6 animate-pulse">
-                    <span className="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-32" />
-                    <span className="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-14" />
+                    <span className="h-4 bg-gray-300 rounded-full w-32" />
+                    <span className="h-4 bg-gray-300 rounded-full w-14" />
                 </div>
                 <div className="h-12 flex items-center w-full justify-between py-10 px-6 animate-pulse">
-                    <span className="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-32" />
-                    <span className="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-16" />
+                    <span className="h-4 bg-gray-300 rounded-full w-32" />
+                    <span className="h-4 bg-gray-300 rounded-full w-16" />
                 </div>
                 <div className="h-12 flex items-center w-full justify-between py-10 px-6 animate-pulse">
-                    <span className="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-32" />
-                    <span className="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-14" />
+                    <span className="h-4 bg-gray-300 rounded-full w-32" />
+                    <span className="h-4 bg-gray-300 rounded-full w-14" />
                 </div>
                 <div className="h-12 flex items-center w-full justify-between py-10 px-6 animate-pulse">
-                    <span className="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-32" />
-                    <span className="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-16" />
+                    <span className="h-4 bg-gray-300 rounded-full w-32" />
+                    <span className="h-4 bg-gray-300 rounded-full w-16" />
                 </div>
             </div>
         </div>
