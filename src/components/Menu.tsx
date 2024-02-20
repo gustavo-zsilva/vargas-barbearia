@@ -33,7 +33,7 @@ export async function Menu() {
             </div>
             <ul className="border-x-2 border-grey-dark max-h-[500px] overflow-scroll">
                 {menuItems.map(item => (
-                    <li key={item.name} className="flex justify-between items-center border-b-2 border-grey-dark mx-6 py-5">
+                    <li key={item.name} className="flex justify-between items-center border-b-2 border-grey-dark border-opacity-10 mx-6 py-5">
                         <p>{item.name}</p>
                         <div className="flex gap-2 desktop:gap-3 items-baseline relative">
                             {item.isPriceRanged && <span className="opacity-75 text-right">a partir de </span>}
