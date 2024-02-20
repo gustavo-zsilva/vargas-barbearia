@@ -7,9 +7,6 @@ import { Gallery } from "../components/Gallery";
 import { Testimonials } from "../components/Testimonials";
 import { Contact } from "../components/Contact";
 import { Footer } from "../components/Footer";
-import { Suspense } from "react";
-import Loading from "./loading";
-import { GallerySkeleton } from "../components/GallerySkeleton";
 import Error from './error'
 import { ErrorBoundary } from 'react-error-boundary'
 
@@ -46,9 +43,7 @@ export default function Home() {
         
         <div className="flex-1">
           <ErrorBoundary FallbackComponent={Error}>
-            <Suspense fallback={<GallerySkeleton />}>
               <Gallery />
-            </Suspense>
           </ErrorBoundary>
         </div>
       </div>
