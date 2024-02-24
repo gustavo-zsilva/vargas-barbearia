@@ -17,7 +17,7 @@ export async function Menu() {
     const url = process.env.VERCEL_URL || process.env.NEXT_PUBLIC_VERCEL_URL
     const protocol = process.env.VERCEL_ENV || process.env.NEXT_PUBLIC_VERCEL_ENV === 'development' ? 'http' : 'https'
 
-    const response = await fetch(`${protocol}://${url}/api`, {
+    const response = await fetch(`https://barbearia-javc.vercel.app/api`, {
         next: {
             revalidate: 86400 // 24h
         }
