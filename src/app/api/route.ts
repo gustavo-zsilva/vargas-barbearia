@@ -46,7 +46,7 @@ export async function GET() {
                 .text()
                 .split('R$')[0]
                 .trim()
-                .length > 0 ? true : false
+                .length > 0
 
             menu.push({
                 name,
