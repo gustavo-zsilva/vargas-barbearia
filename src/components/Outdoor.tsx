@@ -87,7 +87,7 @@ export async function Outdoor() {
     // Transforms date ("2024/01/30") to weekday ("Tuesday")
     const formattedDate = new Date(nextWorkingDay.open.date
         .replaceAll('-', '/'))
-        .toLocaleString('default', {
+        .toLocaleDateString('pt-BR', {
             weekday: 'long'
         })
 
