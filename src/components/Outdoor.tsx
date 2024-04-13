@@ -42,6 +42,16 @@ function formatDateStrings({ close, open }: Period) {
     }
 }
 
+function addZero(time: number) {
+    if (time < 10) {
+        let strTime = time.toString()
+        strTime = '0' + strTime
+        return strTime
+    }
+
+    return time.toString()
+}
+
 export async function Outdoor() {
 
     const { placeData } = await getPlaceData()
@@ -49,10 +59,18 @@ export async function Outdoor() {
     const isOpenNow = placeData.current_opening_hours.open_now
     const workingPeriods = placeData.current_opening_hours.periods
 
-    const currentDay = new Date().getDay()
+    const date = new Date()
+    const currentDay = date.getDay()
+    const currentHour = addZero(date.getHours())
+    const currentMinutes = addZero(date.getMinutes())
 
     const workingDayIndex = workingPeriods.findIndex(period => period.open.day === currentDay)
     const workingDay = workingDayIndex > -1 ? formatDateStrings(workingPeriods[workingDayIndex]) : null
+
+    const numberWorkingDayOpenTime = Number(workingDay?.open.time.replace(':', ''))
+    const numberCurrentTime = Number(currentHour + currentMinutes)
+    // Check if place has not opened yet, eg. it's 6h30 and it opens 7h30
+    const isNotOpenYet = numberCurrentTime < numberWorkingDayOpenTime
     
     function getNextWorkingDay() {
         const lastWorkingDay = workingPeriods.length
@@ -88,10 +106,9 @@ export async function Outdoor() {
                 >
                 <span className="font-bold">{isOpenNow ? 'ABERTO AGORA' : 'FECHADO'}</span>
                 <span>
-                    {isOpenNow ?
-                        `até ${workingDay?.close.time}`
-                        : `abre ${currentDay === 6 ? formattedDate : 'amanhã'} ás ${nextWorkingDay.open.time}`
-                    }
+                    {isOpenNow && `até ${workingDay?.close.time}`}
+                    {!isOpenNow && isNotOpenYet && `abre hoje às ${workingDay?.open.time}`}
+                    {!isOpenNow && !isNotOpenYet && `abre ${currentDay === 6 ? formattedDate : 'amanhã'} ás ${nextWorkingDay.open.time}`}
                 </span>
             </div>
             <button
